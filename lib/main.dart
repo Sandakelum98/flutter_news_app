@@ -31,7 +31,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("News App", style: TextStyle(color: Colors.black)),
+        title: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: 'News ',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 18.0,
+                  color: Color(0xFF30A2FF),
+                ),
+              ),
+              TextSpan(
+                text: 'App',
+                  style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                  color: Color(0xFF61677A),
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
       ),
       body: FutureBuilder(

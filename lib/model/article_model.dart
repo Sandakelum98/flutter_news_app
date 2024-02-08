@@ -1,4 +1,5 @@
 import 'source_model.dart';
+import 'package:intl/intl.dart';
 
 class Article {
   Source source;
@@ -23,13 +24,19 @@ class Article {
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
       source: Source.fromJson(json['source']),
-      author: json['author'] as String? ?? "", // Using null-coalescing operator
-      title: json['title'] as String? ?? "", // Using null-coalescing operator
-      description: json['description'] as String? ?? "", // Using null-coalescing operator
-      url: json['url'] as String? ?? "", // Using null-coalescing operator
-      urlToImage: json['urlToImage'] as String? ?? "", // Using null-coalescing operator
-      publishedAt: json['publishedAt'] as String? ?? "", // Using null-coalescing operator
-      content: json['content'] as String? ?? "", // Using null-coalescing operator
+      author: json['author'] as String? ?? "", 
+      title: json['title'] as String? ?? "",
+      description: json['description'] as String? ?? "", 
+      url: json['url'] as String? ?? "", 
+      urlToImage: json['urlToImage'] as String? ?? "", 
+      publishedAt: formattedDate(json['publishedAt'] as String? ?? ""),
+      content: json['content'] as String? ?? "", 
     );
+  }
+
+  static String formattedDate(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    String formatted = DateFormat('yyyy-MM-dd HH:mm').format(dateTime.toLocal());
+    return formatted;
   }
 }

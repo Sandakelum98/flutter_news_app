@@ -1,8 +1,19 @@
 import 'package:flutter_news_app/model/article_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news_app/pages/articles_details_page.dart';
 
 Widget customListTile(Article article, BuildContext context) {
-  return Container(
+  return  InkWell(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ArticlePage(
+                    article: article,
+                  )));
+    },
+  
+  child: Container(
     margin: EdgeInsets.all(12.0),
     padding: EdgeInsets.all(8.0),
     decoration: BoxDecoration(
@@ -67,5 +78,6 @@ Widget customListTile(Article article, BuildContext context) {
         )
       ],
     ),
+  ),
   );
 }

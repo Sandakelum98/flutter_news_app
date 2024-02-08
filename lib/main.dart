@@ -1,6 +1,7 @@
 import 'package:flutter_news_app/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'model/article_model.dart';
+import 'components/customListTile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,15 +46,13 @@ class _HomePageState extends State<HomePage> {
               child: Text("Error: ${snapshot.error}"),
             );
           } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-
             List<Article> articles = snapshot.data!; // Adding null check
             return ListView.builder(
-                //Now let's create our custom List tile
-                itemCount: articles.length,
-                itemBuilder: (context, index) => ListTile(
-                      title: Text(articles[index].title),
-                    ));
-                    
+              //Now let's create our custom List tile
+              itemCount: articles.length,
+              itemBuilder: (context, index) =>
+                  customListTile(articles[index], context),
+            );
           } else {
             return Center(
               child: Text("No data available"),

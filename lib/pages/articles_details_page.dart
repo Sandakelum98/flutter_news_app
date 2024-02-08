@@ -22,9 +22,18 @@ class ArticlePage extends StatelessWidget {
               height: 200.0,
               width: double.infinity,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(article.urlToImage), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(12.0),
+                image:
+                    article.urlToImage != null && article.urlToImage.isNotEmpty
+                        ? DecorationImage(
+                            image: NetworkImage(article.urlToImage),
+                            fit: BoxFit.cover,
+                          )
+                        : DecorationImage(
+                            image: AssetImage(
+                                'assets/no-image.png'),
+                            fit: BoxFit.cover,
+                          ),
               ),
             ),
             SizedBox(
@@ -58,15 +67,13 @@ class ArticlePage extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    article.author ??
-                        '', 
+                    article.author ?? '',
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
                       fontSize: 12.0,
                     ),
                   ),
-                  SizedBox(
-                      width: 4.0),
+                  SizedBox(width: 4.0),
                   Text(
                     "|",
                     style: TextStyle(
@@ -74,8 +81,7 @@ class ArticlePage extends StatelessWidget {
                       fontSize: 12.0,
                     ),
                   ),
-                  SizedBox(
-                      width: 4.0),
+                  SizedBox(width: 4.0),
                   Text(
                     article.publishedAt,
                     style: TextStyle(
